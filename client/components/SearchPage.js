@@ -36,14 +36,17 @@ const SearchPage = () => {
     return(
       <>
         <NavBar/>
-        {/*<div>
-            <SearchBar />
-            <ul>
-                {filteredPosts.map((post) => (
-                    <li key={post.id}>{post.name}</li>
-                ))}
-            </ul>
-                </div>*/}
+        <div>
+
+          <SearchBar />
+
+          <ul>
+            {filteredPosts.map((post) => (
+              <li key={post.id}>{post.name}</li>
+            ))}
+          </ul>
+
+        </div>
       </>
     )
 }
