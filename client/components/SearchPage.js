@@ -5,12 +5,18 @@ import NavBar from './NavBar';
 
 const Search = () => {
 
-  let variable = 'Hello world!'
+  // Build  search bar for user to enter sitewide search
+  
+
+  // Query the database for search results
+
+  // Populate a list of results from search
+  let results = 'Hello world!'
 
     return(
       <>
         <NavBar/>
-        <div>{variable}</div>
+        <div>{results}</div>
       </>
     )
 }
