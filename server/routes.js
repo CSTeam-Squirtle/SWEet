@@ -11,12 +11,12 @@ router.get('/', userController.getRecipients, (req, res) =>
 // NOTE I believe this route has been tested in postman but does not
 // yet work with the frontend
 router.post('/create', userController.newUser, (req, res) =>
-  res.status(200).json(res.locals.userTable)
+  res.status(200).json(res.locals.user)
 );
 
 // checks user on login attempt
 // same story as above, tested on postman, not yet functional with frontend
-router.get('/login', userController.checkUser, (req, res) =>
+router.post('/login', userController.checkUser, (req, res) =>
   res.status(200).json(res.locals.users).redirect('/')
 );
 

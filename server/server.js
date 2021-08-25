@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 // app.use(express.static(path.join(__dirname, '../index.html')));
 
-app.use('/api', apiRouter);
+app.use('/', apiRouter);
 
 // global error handler
 app.use((err, req, res, next) => {

@@ -7,14 +7,14 @@ const userController = {};
 // add a new user
 userController.newUser = (req, res, next) => {
   // extract neccesary params from request body
-  const { _id, name, username, password } = req.body;
-  const newUserQuery = `INSERT INTO users (_id, name, username, password)
-  VALUES ($1, $2, $3, $4, $5)`;
-  const params = [_id, name, username, password];
+  const { id, email, password, firstName, lastName} = req.body;
+  const newUserQuery = `INSERT INTO users (id, email, password, firstName, lastName)
+  VALUES ($1, $2, $3, $4)`;
+  const params = [id, email, password, firstName, lastName];
   // query
   db.query(newUserQuery, params)
     .then((result) => {
-      res.locals.userTable = result.rows[0];
+      res.locals.user = result.rows[0];
       return next();
     })
     .catch((err) =>
@@ -31,9 +31,9 @@ userController.newUser = (req, res, next) => {
 
 // middleware to perform get request, confirm user is in database
 userController.checkUser = (req, res, next) => {
+  const { email, password } = req.body;
   const userQuery =
     'SELECT email, password FROM users WHERE email = $1 AND password = $2';
-  const { email, password } = req.body;
   const params = [email, password];
   db.query(userQuery, params)
     .then((data) => {
