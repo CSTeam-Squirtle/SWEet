@@ -14,7 +14,7 @@ export default function NavBar() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="https://www.calendar.google.com">Calendar</Link>
+              <a href="https://calendar.google.com/calendar/embed?src=c_diji5n0pcjoe3kvceh5bndvjik%40group.calendar.google.com&ctz=America%2FLos_Angeles">Calendar</a>
             </li>
             <li>
               <Link to="/contacts">Contacts</Link>
