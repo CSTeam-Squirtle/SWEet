@@ -1,17 +1,4 @@
-/**
- * ************************************
- *
- * @module  actionTypes.js
- * @author
- * @date
- * @description Action Type Constants
- *
- * ************************************
- */
-
-
-// add action type constants i.e.:
-export const ADD_MARKET_CARD = "ADD_MARKET_CARD";
-export const ADD_CARD_VALUE = "ADD_CARD_VALUE";
-export const ADD_CARD_PERCENT = "ADD_CARD_PERCENT";
-
+export const LOAD_JOB_APPLICATIONS = 'LOAD_JOB_APPLICATIONS';
+export const ADD_JOB_APPLICATION = 'ADD_JOB_APPLICATION';
+export const DELETE_JOB_APPLICATION = 'DELETE_JOB_APPLICATION';
+export const EDIT_JOB_APPLICATION = 'EDIT_JOB_APPLICATION';
