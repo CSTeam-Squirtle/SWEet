@@ -14,6 +14,15 @@ const SearchPage = () => {
     { id: '4', name: 'This is the fourth and final post' },
   ];
 
+  /* Request to query all databases for data
+  fetch('/actualRouteGoesHere')
+    .then(res => res.json() )
+    .then( data => {
+      results = data;
+    })
+    .catch((err) => console.log('Error in SearchPage.js fetching data'));
+  */
+
   // We’ll also need a function that filters out posts depending on the search query:
   const filterPosts = (posts, query) => {
     if (!query) {
@@ -29,7 +38,7 @@ const SearchPage = () => {
   // Our search bar will navigate us to a new URL when we perform a search.
   // We can grab this value from the URL:
   const { search } = window.location;
-  const query = new URLSearchParams(search).get('s');
+  const query = new URLSearchParams(search).get('searchbar');
   // Using our search query and filter function, we can render the posts that match our search:
   const filteredPosts = filterPosts(posts, query);
 

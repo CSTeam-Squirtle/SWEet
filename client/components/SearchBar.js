@@ -9,7 +9,7 @@ const SearchBar = () => {
       type="text"
       id="header-search"
       placeholder="Enter a name, etc."
-      name="s" 
+      name="searchbar" 
   />
   <button type="submit">Search</button>
 </form>)
