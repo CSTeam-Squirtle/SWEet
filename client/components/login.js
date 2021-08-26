@@ -71,7 +71,7 @@ function Login (){
        <Switch>
          {/* <Route component={App} exact path="/app" /> */}
          <Route path="/app">
-           <Main />
+           {/* <Main /> */}
          </Route>
        </Switch> 
      </Router>

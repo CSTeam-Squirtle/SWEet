@@ -3,3 +3,7 @@ ted.js
 package-lock.json
 .DS_Store
 dist
+<<<<<<< HEAD
+dist/index.bundle.js
+=======
+>>>>>>> 82ced847dda53d849e2ffd25ba403299e3a18f21

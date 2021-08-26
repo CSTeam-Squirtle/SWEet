@@ -21,7 +21,6 @@ router.post('/create', userController.newUser, (req, res) =>
 // checks user on login attempt
 // same story as above, tested on postman, not yet functional with frontend
 router.post('/login', userController.checkUsers);
-);
 
 
 module.exports = router;
