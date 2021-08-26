@@ -5,6 +5,8 @@ import Main from './Main';
 import CreateTodoModal from './modals/CreateTodoModal'
 import Navbar from '../components/NavBar'
 import { loadTodo, addTodo } from '../actions/action'
+import { routes } from '../../server/server';
+import Routes from '../components/routes';
 
 
 
@@ -22,6 +24,7 @@ function App(props) {
        <div>
            <div>
                <Navbar />
+               <Routes />
            </div>
            <div>
            <button
