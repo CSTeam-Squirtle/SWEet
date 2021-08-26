@@ -19,8 +19,6 @@ function Login (){
  const session = useSelector((state) => state.sweet.isLoggedIn);
  const sessionLists = useSelector((state) => state.sweet)
 
-
-
  useEffect(() => {
   fetch('/api/contacts')
   .then(res => res.json())

@@ -4,7 +4,6 @@ import DailyTask from './DailyTask'
 import JobApps from './JobApps'
 import NavBar from './NavBar';
 
-
 const Main = () => {
 
     return(
@@ -14,7 +13,6 @@ const Main = () => {
 
           
        
-      
     );
 
 }
