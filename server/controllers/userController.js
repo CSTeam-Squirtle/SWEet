@@ -7,10 +7,9 @@ const userController = {};
 // add a new user
 userController.newUser = (req, res, next) => {
   // extract neccesary params from request body
-  const { id, email, password, firstName, lastName} = req.body;
-  const newUserQuery = `INSERT INTO users (id, email, password, firstName, lastName)
-  VALUES ($1, $2, $3, $4)`;
-  const params = [id, email, password, firstName, lastName];
+  const { email, password, firstname, lastname} = req.body;
+  const newUserQuery = 'INSERT INTO users (email, password, firstname, lastname) VALUES ($1, $2, $3, $4)';
+  const params = [email, password, firstname, lastname];
   // query
   db.query(newUserQuery, params)
     .then((result) => {
@@ -29,33 +28,14 @@ userController.newUser = (req, res, next) => {
     );
 };
 
-// middleware to perform get request, confirm user is in database
-userController.checkUser = (req, res, next) => {
-  const { email, password } = req.body;
-  const userQuery =
-    'SELECT email, password FROM users WHERE email = $1 AND password = $2';
-  const params = [email, password];
-  db.query(userQuery, params)
-    .then((data) => {
-      res.locals.users = data.rows;
-      return next();
-    })
-    .catch((err) => {
-      return next({
-        log: `userController.checkUser: ERROR: ${err}`,
-        message: {
-          err: 'Error occured in userController.checkUser. Check server logs for more details.',
-        },
-      });
-    });
-};
 
 // middleware to get list of people we can send points to on the frontend
 // (drop down select menu)
 userController.getRecipients = (req, res, next) => {
-  const recipQuery = 'SELECT _id, name FROM users';
+  const recipQuery = 'SELECT * FROM users';
   db.query(recipQuery)
     .then((data) => {
+      console.log(data.rows)
       res.locals.recipients = data.rows;
       return next();
     })
@@ -69,7 +49,7 @@ userController.getRecipients = (req, res, next) => {
     });
 };
 
-// get all feed items, which are stored in our shoutouts table
+// get task feed
 userController.getFeed = (req, res, next) => {
   db.query(feedQuery)
     .then((data) => {
@@ -90,22 +70,22 @@ userController.getFeed = (req, res, next) => {
 // middleware function executes post request, adds item to feed 
 // when user hits submit on frontend
 userController.postFeed = (req, res, next) => {
-  const params = [sender, recipient_id, points, messages, sender_id];
-  db.query(queryPostToFeed, params)
-    .then((result) => {
-      res.locals.shoutoutFeed = result.rows[0];
-      return next();
-    })
-    .catch((err) =>
-      next(
-        JSON.stringify({
-          log: `userController.postFeed: ERROR: ${err}`,
-          message: {
-            err: 'Error occured in userController.postFeed. Check server logs for more details',
-          },
-        })
-      )
-    );
+  // const params = [];
+  // db.query(query, params)
+  //   .then((result) => {
+  //     res.locals.shoutoutFeed = result.rows[0];
+  //     return next();
+  //   })
+  //   .catch((err) =>
+  //     next(
+  //       JSON.stringify({
+  //         log: `userController.postFeed: ERROR: ${err}`,
+  //         message: {
+  //           err: 'Error occured in userController.postFeed. Check server logs for more details',
+  //         },
+  //       })
+  //     )
+  //   );
 };
 
 

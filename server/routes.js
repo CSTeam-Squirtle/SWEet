@@ -1,5 +1,6 @@
 const express = require('express');
 const userController = require('./controllers/userController');
+const authController = require('./controllers/authController');
 const router = express.Router();
 
 // get request to get recipeients 
@@ -16,7 +17,7 @@ router.post('/create', userController.newUser, (req, res) =>
 
 // checks user on login attempt
 // same story as above, tested on postman, not yet functional with frontend
-router.post('/login', userController.checkUser, (req, res) =>
+router.post('/login', authController.checkUser, (req, res) =>
   res.status(200).json(res.locals.users).redirect('/')
 );
 

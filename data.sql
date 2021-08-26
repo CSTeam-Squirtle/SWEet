@@ -1,10 +1,11 @@
-CREATE TABLE "public.users" (
+CREATE TABLE "users" (
 	"id" serial NOT NULL,
 	"email" varchar NOT NULL UNIQUE,
 	"password" varchar NOT NULL,
-	"firstName" varchar NOT NULL,
-	"lastName" varchar NOT NULL,
-	"Admin" BOOLEAN,
+	"hash" varchar,
+	"firstname" varchar NOT NULL,
+	"lastname" varchar NOT NULL,
+	"admin" BOOLEAN,
 	"phone" integer,
 	"linkedin" varchar, 
 	"github" varchar ,
@@ -17,7 +18,7 @@ CREATE TABLE "public.users" (
 
 
 
-CREATE TABLE "public.tasks" (
+CREATE TABLE "tasks" (
 	"id" serial NOT NULL,
 	"title" VARCHAR(255) NOT NULL,
 	"description" varchar NOT NULL,
@@ -31,7 +32,7 @@ CREATE TABLE "public.tasks" (
 
 
 
-CREATE TABLE "public.team" (
+CREATE TABLE "team" (
 	"id" serial NOT NULL,
 	"name" varchar,
 	CONSTRAINT "team_pk" PRIMARY KEY ("id")
@@ -41,11 +42,41 @@ CREATE TABLE "public.team" (
 
 
 
-ALTER TABLE "public.users" ADD CONSTRAINT "users_fk0" FOREIGN KEY ("team_id") REFERENCES "public.team"("id");
+ALTER TABLE "users" ADD CONSTRAINT "users_fk0" FOREIGN KEY ("team_id") REFERENCES "team"("id");
 
-ALTER TABLE "public.tasks" ADD CONSTRAINT "tasks_fk0" FOREIGN KEY ("user_id") REFERENCES "public.users"("id");
+ALTER TABLE "tasks" ADD CONSTRAINT "tasks_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 
-INSERT INTO "public.users" VALUES (2, 'reduxulous@gmail.com', 'yolo', 'Brent', 'Li', true, 911, 'linkedin', 'github', 'message', 1);
+INSERT INTO "team" (name) VALUES ( 'Ateam');
 
-INSERT INTO "public.users" VALUES (1, 'yolo@gmail.com', 'yolo', 'Brent', 'Li', true, 911, 'linkedin', 'github', 'description', 1);
+INSERT INTO "users" (
+	"email",
+	"password",
+	"hash",
+	"firstname",
+	"lastname",
+	"admin",
+	"phone",
+	"linkedin", 
+	"github",
+	"message",
+	"team_id") VALUES ( 'reduxulous@gmail.com', 'yolo', 'hash', 'Brent', 'Li', true, 911, 'linkedin', 'github', 'message', 1);
 
+INSERT INTO "users" (
+	"email",
+	"password",
+	"hash",
+	"firstname",
+	"lastname",
+	"admin",
+	"phone",
+	"linkedin", 
+	"github",
+	"message",
+	"team_id") VALUES ( 'yolo@gmail.com', 'yolo', 'hashish', 'Brent', 'Li', true, 911, 'linkedin', 'github', 'description', 1);
+
+INSERT INTO "tasks" (
+	"title",
+	"description",
+	"created_at",
+	"checked",
+	"user_id") VALUES ('title', 'descript', CURRENT_TIME , false, 2);
