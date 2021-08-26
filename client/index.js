@@ -12,6 +12,8 @@ import ContactPage from './components/contactsPage'
 import SearchPage from './components/SearchPage'
 import Profile from './components/Profile';
 import { createBrowserHistory } from "history";
+import './css/styles.css'
+
 const history = createBrowserHistory()
 
 ;
