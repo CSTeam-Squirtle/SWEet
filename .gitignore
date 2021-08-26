@@ -1,2 +1,5 @@
 node_modules
 ted.js
+package-lock.json
+.DS_Store
+dist

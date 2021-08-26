@@ -8,7 +8,8 @@ import store from './store';
 
 render(
     <Provider store={store}>
-        document.getElementById('root')
+        <App />
     </Provider>,
-    <App />
+    document.getElementById('root')
   );
+
