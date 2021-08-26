@@ -9,27 +9,32 @@ import * as actions from '../actions/action';
 export function ContactPage(){
     const dispatch = useDispatch();
     const contactList = (data) => dispatch(actions.contactList(data));
-
+    const contactLists = useSelector((state) => state.contact.contactList)
     
-    useEffect(() => {
-        fetch('/api/contacts')
-        .then(res => res.json())
-        .then(data => 
-            console.log(data)
-        )
-        .catch(err => console.log(err)
-        )
-    },[]);
+    // useEffect(() => {
+    //     fetch('/api/contacts')
+    //     .then(res => res.json())
+    //     .then(data => 
+    //         contactList(data)
+    //     )
+    //     .catch(err => console.log(err)
+    //     )
+    // },[]);
+
+    // const resultList = contactLists.map((contact)=> (
+    //     <li key={contact.id}>{contact.firstname}</li>)
+    // )
+
 
     return (
         <div className='theContacts'>
-            <Navbar />
-            <ul>
-                <li>Hi</li>
-            </ul>
-        </div>
+            
+            <h1>Contacts</h1>
+            {contactLists.map((contact) => <li key={contact.id}>First Name: {contact.firstname} | Last Name: {contact.lastname} | Email: {contact.email} | Phone: {contact.phone} | Linkedin {contact.linkedin} | GitHub: {contact.github} | Message: {contact.message}</li>)}
+         </div>
     )
 
 
 
 }
+export default ContactPage

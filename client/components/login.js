@@ -14,9 +14,22 @@ function Login (){
  const dispatch = useDispatch();
  const updateSession = () => dispatch(actions.updateSession());
  const updateUser = (userInfo) => dispatch(actions.updateUser(userInfo));
-
+ const contactList = (data) => dispatch(actions.contactList(data));
+ const contactLists = useSelector((state) => state.contact)
  const session = useSelector((state) => state.sweet.isLoggedIn);
+ const sessionLists = useSelector((state) => state.sweet)
 
+
+
+ useEffect(() => {
+  fetch('/api/contacts')
+  .then(res => res.json())
+  .then(data => 
+      contactList(data)
+  )
+  .catch(err => console.log(err)
+  )
+},[]);
  // callback function invoked when 'login' button is clicked
  const handleLogin = (e) => {
    e.preventDefault(); // prevents form submit from reloading page
@@ -71,6 +84,7 @@ function Login (){
      <Router
        
      >
+       {console.log(sessionLists)}
        <Redirect to="/app"/>
        <Switch>
          {/* <Route component={App} exact path="/app" /> */}
