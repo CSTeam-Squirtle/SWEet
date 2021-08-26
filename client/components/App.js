@@ -7,6 +7,7 @@ import Navbar from '../components/NavBar'
 import { loadTodo, addTodo } from '../actions/action'
 
 
+
 const mapStateToProps = (state) => ({
     todoList: state.todoList.todoList,
 })
