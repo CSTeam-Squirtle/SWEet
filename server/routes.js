@@ -3,9 +3,6 @@ const userController = require('./controllers/userController');
 
 const router = express.Router();
 
-const authController = require('./controllers/authController');
-const router = express.Router();
-
 // get request to get recipeients 
 router.get('/', userController.getRecipients, (req, res) =>
   res.status(200).json([...res.locals.recipients])

@@ -1,4 +1,5 @@
 import Main from './Main';
+import App from './App';
 import React, { useEffect} from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, BrowserHistory } from 'react-router-dom';
 import { connect, useSelector, useDispatch } from 'react-redux';
@@ -71,7 +72,7 @@ function Login (){
        <Switch>
          {/* <Route component={App} exact path="/app" /> */}
          <Route path="/app">
-           {/* <Main /> */}
+           <App />
          </Route>
        </Switch> 
      </Router>

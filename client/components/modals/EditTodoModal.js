@@ -17,4 +17,4 @@
 
 
 
-export default connect(mappStateToProps, mapDispatchToProps){EditTodoModal};
+// export default connect(mappStateToProps, mapDispatchToProps)(EditTodoModal);

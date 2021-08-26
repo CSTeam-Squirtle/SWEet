@@ -7,10 +7,10 @@ const { Pool } = require('pg');
 // const URI = process.env.MONGO_URI || myURI;
 
 // UNCOMMENT THE LINE BELOW IF USING POSTGRESQL
-const URI = 'postgres://aljglwxy:LEvBn3e1MJuWlmNJjd4o67PoFElwsoq_@chunee.db.elephantsql.com/aljglwxy'
+// const URI = process.env.PG_URI || myURI;
 
 const pool = new Pool({
-  connectionString: URI,
+  connectionString: 'postgres://aljglwxy:LEvBn3e1MJuWlmNJjd4o67PoFElwsoq_@chunee.db.elephantsql.com/aljglwxy'
 });
 
 // export standard query format
