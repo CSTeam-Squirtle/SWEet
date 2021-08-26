@@ -16,10 +16,12 @@ userController.checkUsers = (req, res, next) => {
   .then ((data)=>{  
   if (data.rows[0].email === email && data.rows[0].password === password) {
     console.log('email', data.rows[0].email )
-    console.log('passworddd', data.rows[0].password )
+    console.log('passworddd', data.rows[0].firstname )
       // req.session.loggedin = true;
       // req.session.username = username;
-    res.status(200).end()
+      res.locals.user = data.rows
+      console.log(res.locals.user)
+    return res.status(200).json(...res.locals.user);
   } else {
     res.status(404).end()
   }
@@ -115,6 +117,9 @@ userController.postFeed = (req, res, next) => {
   //     )
   //   );
 };
+userController.profile = (req, res, next) => {
+
+}
 
 
 

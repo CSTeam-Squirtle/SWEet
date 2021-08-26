@@ -4,7 +4,7 @@ const userController = require('./controllers/userController');
 const router = express.Router();
 
 // get request to get recipeients 
-router.get('/', userController.getRecipients, (req, res) =>
+router.get('/contacts', userController.getRecipients, (req, res) =>
   res.status(200).json([...res.locals.recipients])
 );
 
@@ -19,5 +19,6 @@ router.post('/create', userController.newUser, (req, res) =>
 // same story as above, tested on postman, not yet functional with frontend
 router.post('/login', userController.checkUsers);
 
+router.get('/profile', userController.profile);
 
 module.exports = router;

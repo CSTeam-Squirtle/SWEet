@@ -7,7 +7,7 @@
  // we are adding composeWithDevTools here to get easy access to the Redux dev tools
  const store = createStore(
    reducers,
-   composeWithDevTools()
+   composeWithDevTools(applyMiddleware(thunk))
  );
  
  export default store;

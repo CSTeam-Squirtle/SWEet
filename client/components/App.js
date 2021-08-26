@@ -43,12 +43,6 @@ function App(props) {
        </div>
     )
 }
-// function App(){
-//     return (
-//         <div>
-//             <Main />
-//         </div>
-//     )
-// }
+
 
 export default connect(mapStateToProps, null)(App);

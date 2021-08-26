@@ -1,4 +1,3 @@
-import Main from './Main';
 import App from './App';
 import React, { useEffect} from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, BrowserHistory } from 'react-router-dom';
@@ -15,7 +14,6 @@ function Login (){
  const dispatch = useDispatch();
  const updateSession = () => dispatch(actions.updateSession());
  const updateUser = (userInfo) => dispatch(actions.updateUser(userInfo));
-
 
  const session = useSelector((state) => state.sweet.isLoggedIn);
 
@@ -47,15 +45,19 @@ function Login (){
        })
      })
      .then((response) => {
-        if (!response.ok) {
-          console.log(response)
-            
-          }
-          else {
-            updateSession(); // loggedIn = true 
-            updateUser(response); // update user info in reducer
-          }
+      if (!response.ok) {
+            console.log('Error')
+      }else{
+        return response.json()
+      }
      })
+     .then((data) => {
+          updateSession(); // loggedIn = true 
+          updateUser(data); // update user info in reducer
+          
+     }  
+
+  )
      .catch((err) => {
        console.log(err);
      });
@@ -65,6 +67,7 @@ function Login (){
 
  if (session){
    return (
+  
      <Router
        
      >
