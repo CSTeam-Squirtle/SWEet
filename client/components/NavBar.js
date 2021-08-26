@@ -1,37 +1,35 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Link,
-  Switch
-} from "react-router-dom";
-import ContactPage from './contactsPage'
-export default function NavBar() {
+import { NavLink, Switch, Route, Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history'
+
+const newHistory = createBrowserHistory();
+
+function NavBar() {
   return (
-    <Router>
-      <Switch>
+    <Router history={newHistory}>
       <div>
         <nav>
           <ul>
             <li>
-            <Route exact path="/Home" component={MainPage} />
+            <NavLink exact to="/home">Home</NavLink>
             </li>
             <li>
               <a href="https://calendar.google.com/calendar/embed?src=c_diji5n0pcjoe3kvceh5bndvjik%40group.calendar.google.com&ctz=America%2FLos_Angeles">Calendar</a>
             </li>
             <li>
-            
-            <Route exact path="/contacts" component={ContactPage} />
+            <NavLink exact to="/contacts">Contacts</NavLink>
             </li>
             <li>
-            <Route exact path="/profile" component={ProfilePage} />
+            <NavLink exact to="/profile">Profile</NavLink>
             </li>
             <li>
-            <Route exact path="/search" component={SearchPage} />
+            <NavLink exact to="/search">Serach</NavLink>
             </li>
           </ul>
         </nav>
       </div>
-      </Switch>
     </Router>
   )
-};
+}
+
+export default NavBar

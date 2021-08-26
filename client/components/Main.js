@@ -5,21 +5,16 @@ import JobApps from './JobApps'
 import NavBar from './NavBar';
 
 
-const Main = (todoList) => {
-    const todo = todoList.todoList;
-  
+const Main = () => {
+
     return(
         <div>
-  
-        {/* <h2 className="heading">Task List</h2>
-        <div className="list">
-            <ol>
-          {todo.map((todo, index) => (
-              <DailyTask message={todo} id={index}/>
-            ))}
-            </ol>
-        </div> */}
-      </div>
+          <NavBar />
+        </div>
+
+          
+       
+      
     );
 
 }

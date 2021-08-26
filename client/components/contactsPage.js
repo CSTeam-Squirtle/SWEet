@@ -4,6 +4,7 @@ import React, { useEffect} from 'react';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import Navbar from './NavBar'
 import * as actions from '../actions/action';
+import NavBar from './NavBar';
 
 
 export function ContactPage(){
@@ -28,7 +29,7 @@ export function ContactPage(){
 
     return (
         <div className='theContacts'>
-            
+            <NavBar />
             <h1>Contacts</h1>
             {contactLists.map((contact) => <li key={contact.id}>First Name: {contact.firstname} | Last Name: {contact.lastname} | Email: {contact.email} | Phone: {contact.phone} | Linkedin {contact.linkedin} | GitHub: {contact.github} | Message: {contact.message}</li>)}
          </div>

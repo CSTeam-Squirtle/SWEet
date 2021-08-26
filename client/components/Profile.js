@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react';
 import { connect, useSelector, useDispatch } from 'react-redux';
-import Navbar from './NavBar'
 import * as actions from '../actions/action';
+import NavBar from './NavBar';
 
 
 function Profile(){
@@ -39,6 +39,7 @@ function Profile(){
 
     return (
         <div>
+            <NavBar />
             <h1>
                 Profile
             </h1>

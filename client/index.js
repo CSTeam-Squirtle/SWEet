@@ -2,17 +2,41 @@ require('file-loader?name=[name].[ext]!../index.html');
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import Login from './components/login';
 import store from './store';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import App from './components/App'
+import Main from './components/Main'
+import Login from './components/login'
+import ContactPage from './components/contactsPage'
+// import Profile from './'
+import SearchPage from './components/SearchPage'
+import Profile from './components/Profile';
+import { createBrowserHistory } from "history";
+const history = createBrowserHistory()
 
 ;
 
 render(
     <Provider store={store}>
-        <Router >
-            <Login />
-        </Router>
+        <Router history={history}>
+            <Switch>
+                <Route path= '/'>
+                <Login />
+            </Route>
+            <Route path= '/home'>
+          <Main />
+            </Route> 
+            <Route path= '/contacts'>
+            <ContactPage />
+        </Route>
+        <Route path= '/profile'>
+          <Profile />
+        </Route>
+        <Route path= '/search'>
+          <SearchPage />
+        </Route>
+      </Switch> 
+   </Router> 
     </Provider>,
     document.getElementById('root')
   );
