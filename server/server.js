@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const apiRouter = require('./routes');
-// const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 const PORT = 3000;
 
@@ -13,12 +13,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 
 // parses incoming cookies
-// app.use(cookieParser());
+app.use(cookieParser());
 
 // app.use(express.static(path.join(__dirname, '../index.html')));
 
-// router
-// app.use('/api', apiRouter);
+app.use('/api', apiRouter);
 
 // global error handler
 app.use((err, req, res, next) => {
