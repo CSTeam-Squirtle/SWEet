@@ -64,3 +64,18 @@ export const editApp = () => ({
   type: types.EDIT_TODO,
   payload: 'editApp payload placeholder',
 });
+
+export const updateSession = () => ({
+  type: types.UPDATE_SESSION,
+});
+
+export const updateUser = (data) => ({
+  type: types.UPDATE_USER,
+  payload: data,
+});
+
+export const logoutUser = (data) => ({
+  type: types.LOGOUT_USER,
+  payload: data,
+});
+
