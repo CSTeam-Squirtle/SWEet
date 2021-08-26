@@ -1,10 +1,10 @@
 const express = require('express');
 const userController = require('./controllers/userController');
-const authController = require('./controllers/authController');
+
 const router = express.Router();
 
 // get request to get recipeients 
-router.get('/', userController.getRecipients, (req, res) =>
+router.get('/contacts', userController.getRecipients, (req, res) =>
   res.status(200).json([...res.locals.recipients])
 );
 
@@ -20,5 +20,9 @@ router.post('/create', userController.newUser, (req, res) =>
 router.post('/login', {/*authController.checkUser*/}, (req, res) =>
   res.status(200).json(res.locals).redirect('/')
 );
+
+router.put('/profile', userController.profile, (req, res) => {
+  res.status(200).json({});
+});
 
 module.exports = router;

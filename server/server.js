@@ -20,16 +20,16 @@ app.use(express.static(path.resolve(__dirname, '../index.html')));
 app.use('/api', apiRouter);
 
 // global error handler
-app.use((err, req, res, next) => {
-  const defErr = {
-    log: 'sent to the global error handler',
-    status: 500,
-    msg: {err: 'error in server'}
-  };
-  const errorObj = Object.assign(defErr, err);
-  console.log(errorObj.log);
-  return res.status(errorObj.status).json(errorObj.msg);
-});
+// app.use((err, req, res, next) => {
+//   const defErr = {
+//     log: 'sent to the global error handler',
+//     status: 500,
+//     msg: {err: 'error in server'}
+//   };
+//   const errorObj = Object.assign(defErr, err);
+//   console.log(errorObj.log);
+//   return res.status(errorObj.status).json(errorObj.msg);
+// });
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);

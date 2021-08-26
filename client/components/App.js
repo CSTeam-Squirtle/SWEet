@@ -1,16 +1,13 @@
-import React from 'react';
-import Main from './Main';
-import Login from './login'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import Routes from './routes';
 
 function App() {
-    return(
-            <Router>
-                <Switch>
-                    <Route exact path="/" component={Login}></Route>
-                </Switch>
-            </Router>
-    )
+  return(
+    <div>
+        <Routes />
+    </div>
+  )
 }
+
 
 export default App;

@@ -21,6 +21,36 @@ const hashPassword = async (password, saltRounds = 8) => {
   return null;
 };
 
+
+
+// middleware to perform get request, confirm user is in database
+userController.checkUsers = (req, res, next) => {
+  const userQuery =
+    'SELECT * FROM users WHERE email = $1 AND password = $2';
+  const { email, password } = req.body;
+  const params = [email, password];
+  db.query(userQuery, params)
+  .then ((data)=>{  
+  if (data.rows[0].email === email && data.rows[0].password === password) {
+    console.log('email', data.rows[0].email )
+    console.log('passworddd', data.rows[0].firstname )
+      // req.session.loggedin = true;
+      // req.session.username = username;
+      res.locals.user = data.rows
+      console.log(res.locals.user)
+    return res.status(200).json(...res.locals.user);
+  } else {
+    res.status(404).end()
+  }
+}).catch(err=>{
+    console.log(err)
+    return next()
+})
+};
+
+
+
+
 // add a new user
 userController.newUser = async (req, res, next) => {
   // extract neccesary params from request body
@@ -103,6 +133,49 @@ userController.postFeed = (req, res, next) => {
   //     )
   //   );
 };
+userController.profile = (req, res, next) => {
+// get values from req body
+ 
+   const {
+     message,
+     id
+   } = req.body;
+ 
+   // add job application id as last array element
+ 
+   const updatedMessage= [
+     message,
+     id,
+   ];
+ 
+   // make query string
+ 
+   const queryStr = `
+     UPDATE
+       users
+     SET 
+       message = $1
+     WHERE 
+       id = $2  
+     `;
+ 
+   //  query db
+ 
+   db.query(queryStr, updatedMessage)
+     .then((data) => {
+       res.locals.message = data.rows[0].message;
+       console.log(res.locals.message)
+       return next();
+     })
+     .catch((err) => {
+       return next({
+         log: 'Express error handler caught error in userController.updateMessage',
+         status: 400,
+         message: { err },
+       });
+     });
+ };
+
 
 
 module.exports = userController;
