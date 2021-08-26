@@ -8,20 +8,22 @@ const SearchPage = () => {
 
   // Dummy data for testing:
   const posts = [
-    { id: '1', name: 'This first post is about React' },
-    { id: '2', name: 'This next post is about Preact' },
-    { id: '3', name: 'We have yet another React post!' },
-    { id: '4', name: 'This is the fourth and final post' },
+    { id: '1', name: 'Atif Luna  |  atif404@gmail.com' },
+    { id: '2', name: 'Mackenzie Stein  |  makkiezee@gmail.com' },
+    { id: '3', name: 'Evan Woodard  |  salmonsailor999@yahoo.com' },
+    { id: '4', name: 'Naomi Nicholson   |  booklover89@aol.com' },
+    { id: '5', name: 'To-Do Task: Do one hour of algos   |  Status: Complete for today' },
+    { id: '6', name: 'To-Do Task: Plan study sesh   |  Status: Not complete for today' },
   ];
 
-  /* Request to query all databases for data
-  fetch('/actualRouteGoesHere')
+  /* Request to query all databases for data 
+  fetch('/api/searchResults')
     .then(res => res.json() )
     .then( data => {
-      results = data;
+      console.log(data[0]);
     })
-    .catch((err) => console.log('Error in SearchPage.js fetching data'));
-  */
+    .catch((err) => console.log('Error in SearchPage.js fetching data'));*/
+
 
   // We’ll also need a function that filters out posts depending on the search query:
   const filterPosts = (posts, query) => {

@@ -85,7 +85,7 @@ function Login (){
    >
      <Route id="route" path="/"> 
        <header>
-        Title?
+        <h1>SWEet Collaborative Action</h1>
        </header>
        <br></br>
        <br></br>
