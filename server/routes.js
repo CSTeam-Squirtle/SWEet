@@ -19,6 +19,8 @@ router.post('/create', userController.newUser, (req, res) =>
 // same story as above, tested on postman, not yet functional with frontend
 router.post('/login', userController.checkUsers);
 
-router.get('/profile', userController.profile);
+router.put('/profile', userController.profile, (req, res) => {
+  res.status(200).json({});
+});
 
 module.exports = router;

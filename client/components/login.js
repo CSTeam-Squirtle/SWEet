@@ -1,4 +1,4 @@
-import App from './App';
+import Main from './Main'
 import React, { useEffect} from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, BrowserHistory } from 'react-router-dom';
 import { connect, useSelector, useDispatch } from 'react-redux';
@@ -14,9 +14,20 @@ function Login (){
  const dispatch = useDispatch();
  const updateSession = () => dispatch(actions.updateSession());
  const updateUser = (userInfo) => dispatch(actions.updateUser(userInfo));
-
+ const contactList = (data) => dispatch(actions.contactList(data));
+ const contactLists = useSelector((state) => state.contact)
  const session = useSelector((state) => state.sweet.isLoggedIn);
+ const sessionLists = useSelector((state) => state.sweet)
 
+ useEffect(() => {
+  fetch('/api/contacts')
+  .then(res => res.json())
+  .then(data => 
+      contactList(data)
+  )
+  .catch(err => console.log(err)
+  )
+},[]);
  // callback function invoked when 'login' button is clicked
  const handleLogin = (e) => {
    e.preventDefault(); // prevents form submit from reloading page
@@ -71,15 +82,17 @@ function Login (){
      <Router
        
      >
-       <Redirect to="/app"/>
+       {console.log(sessionLists)}
+       <Redirect to="/home"/>
        <Switch>
          {/* <Route component={App} exact path="/app" /> */}
-         <Route path="/app">
-           <App />
+         <Route path="/home">
+           <Main />
          </Route>
        </Switch> 
      </Router>
    );
+
  }
  
  // Else render the login page

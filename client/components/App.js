@@ -1,51 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import store from '../store'
-import Main from './Main';
-import CreateTodoModal from './modals/CreateTodoModal'
-import Navbar from '../components/NavBar'
-import { loadTodo, addTodo } from '../actions/action'
-import { routes } from '../../server/server';
-import Routes from '../components/routes';
+import Routes from './routes';
 
-
-
-const mapStateToProps = (state) => ({
-    todoList: state.todoList.todoList,
-})
-
-function App(props) {
-    const [show, setShow] = useState(false);
-    useEffect(() => {
-        store.dispatch(loadTodo());
-    }, []);
-    
-    return(
-       <div>
-           <div>
-               <Navbar />
-               <Routes />
-           </div>
-           <div>
-           <button
-        className="btn btn-add"
-        type="button"
-        onClick={() => setShow(true)}
-      >
-        Add Task
-      </button>
-      <CreateTodoModal
-        onClose={() => setShow(false)}
-        show={show}
-        addTodo={addTodo}
-      />
-           </div>
-           <div>
-           <Main todoList={props.todoList}/>
-           </div>
-       </div>
-    )
+function App() {
+  return(
+    <div>
+        <Routes />
+    </div>
+  )
 }
 
 
-export default connect(mapStateToProps, null)(App);
+export default App;

@@ -118,8 +118,47 @@ userController.postFeed = (req, res, next) => {
   //   );
 };
 userController.profile = (req, res, next) => {
-
-}
+// get values from req body
+ 
+   const {
+     message,
+     id
+   } = req.body;
+ 
+   // add job application id as last array element
+ 
+   const updatedMessage= [
+     message,
+     id,
+   ];
+ 
+   // make query string
+ 
+   const queryStr = `
+     UPDATE
+       users
+     SET 
+       message = $1
+     WHERE 
+       id = $2  
+     `;
+ 
+   //  query db
+ 
+   db.query(queryStr, updatedMessage)
+     .then((data) => {
+       res.locals.message = data.rows[0].message;
+       console.log(res.locals.message)
+       return next();
+     })
+     .catch((err) => {
+       return next({
+         log: 'Express error handler caught error in userController.updateMessage',
+         status: 400,
+         message: { err },
+       });
+     });
+ };
 
 
 
