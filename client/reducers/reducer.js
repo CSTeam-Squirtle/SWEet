@@ -1,15 +1,15 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  _id: '',
-  team: '',
-  firstName: '',
-  lastName: '',
+  id: '',
+  team_id: '',
+  firstname: '',
+  lastname: '',
   email: '',
   phone: '',
-  slackName: '',
-  linkedinURL: '',
-  githubURL: '',
+  hash: '',
+  linkedin: '',
+  github: '',
   message: '',
   admin: '',
   password: '',
@@ -30,15 +30,15 @@ const initialState = {
   // Upon successful sign-up or login, update session state with all user info
   case types.UPDATE_USER: {
     const {
-      _id,
-      team,
-      firstName,
-      lastName,
+      id,
+      team_id,
+      firstname,
+      lastname,
       email,
       phone,
-      slackName,
-      linkedinURL,
-      githubURL,
+      hash,
+      linkedin,
+      github,
       message,
       admin,
       password
@@ -46,15 +46,15 @@ const initialState = {
 
     return { 
       ...state,
-      _id,
-      team,
-      firstName,
-      lastName,
+      id,
+      team_id,
+      firstname,
+      lastname,
       email,
       phone,
-      slackName,
-      linkedinURL,
-      githubURL,
+      hash,
+      linkedin,
+      github,
       message,
       admin,
       password

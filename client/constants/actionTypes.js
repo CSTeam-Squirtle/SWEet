@@ -9,3 +9,4 @@ export const EDIT_JOB_APPLICATION = 'EDIT_JOB_APPLICATION';
 export const UPDATE_SESSION = 'UPDATE_SESSION';
 export const UPDATE_USER = 'UPDATE_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+export const CONTACT_LIST = 'CONTACT_LIST';

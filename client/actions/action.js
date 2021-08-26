@@ -78,4 +78,8 @@ export const logoutUser = (data) => ({
   type: types.LOGOUT_USER,
   payload: data,
 });
+export const contactList = (data) => ({
+  type: types.CONTACT_LIST,
+  payload: data,
+})
 

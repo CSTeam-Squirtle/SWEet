@@ -1,33 +1,37 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Link
+  Link,
+  Switch
 } from "react-router-dom";
-
+import ContactPage from './contactsPage'
 export default function NavBar() {
   return (
     <Router>
+      <Switch>
       <div>
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+            <Route exact path="/Home" component={MainPage} />
             </li>
             <li>
               <a href="https://calendar.google.com/calendar/embed?src=c_diji5n0pcjoe3kvceh5bndvjik%40group.calendar.google.com&ctz=America%2FLos_Angeles">Calendar</a>
             </li>
             <li>
-              <Link to="/contacts">Contacts</Link>
+            
+            <Route exact path="/contacts" component={ContactPage} />
             </li>
             <li>
-              <Link to="/profile">Profile</Link>
+            <Route exact path="/profile" component={ProfilePage} />
             </li>
             <li>
-              <Link to="/search">Search</Link>
+            <Route exact path="/search" component={SearchPage} />
             </li>
           </ul>
         </nav>
       </div>
+      </Switch>
     </Router>
   )
 };
