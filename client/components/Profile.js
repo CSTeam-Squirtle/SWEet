@@ -6,7 +6,7 @@ import NavBar from './NavBar';
 
 function Profile(){
     const sessionLists = useSelector((state) => state.sweet)
-
+    console.log(sessionLists)
     const handleMessage = (e) =>{
         e.preventDefault();
         const messageInput = documenet.getElementById('messageArea')
@@ -39,7 +39,6 @@ function Profile(){
 
     return (
         <div>
-            <NavBar />
             <h1>
                 Profile
             </h1>

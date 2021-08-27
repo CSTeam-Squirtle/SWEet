@@ -1,4 +1,5 @@
 import Main from './Main'
+import Profile from './Profile'
 import React, { useEffect} from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, BrowserHistory } from 'react-router-dom';
 import { connect, useSelector, useDispatch } from 'react-redux';
@@ -76,34 +77,27 @@ function Login (){
 
  // Upon successful login, redirect to /app location and render the App component
 
- if (session){
-   return (
+//  if (session){
+//    return (
   
-     <Router
+  //    <Router
        
-     >
-       {console.log(sessionLists)}
-       <Redirect to="/home"/>
-       <Switch>
-         {/* <Route component={App} exact path="/app" /> */}
-         <Route path="/home">
-           <Main />
-         </Route>
-       </Switch> 
-     </Router>
-   );
+  //    >
+      //  {console.log(sessionLists)}
+      //  <Switch>
+      //    <Route path="/home">
+      //      <Main />
+      //    </Route>
+      //    <Route path="/contacts"/>
+      //  </Switch> 
+  //    </Router>
+  //  );
 
- }
+
  
  // Else render the login page
  return (
-   <Router 
-    
-   >
      <Route id="route" path="/"> 
-       <header>
-        Title?
-       </header>
        <br></br>
        <br></br>
        <br></br>
@@ -127,10 +121,14 @@ function Login (){
              <hr></hr>
              
            </form>
+           <div>
+             <a href='/signup'>
+              Create Account
+             </a>
+           </div>
          </div>
        </div>
      </Route>
-   </Router>
  );
 };
 

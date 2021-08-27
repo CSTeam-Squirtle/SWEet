@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // parses incoming cookies
 app.use(cookieParser());
 
-// app.use(express.static(path.join(__dirname, '../index.html')));
+app.use(express.static(path.resolve(__dirname, '../index.html')));
 
 app.use('/api', apiRouter);
 

@@ -1,6 +1,6 @@
 CREATE TABLE "users" (
 	"id" serial NOT NULL,
-	"email" varchar NOT NULL UNIQUE,
+	"email" varchar NOT NULL,
 	"password" varchar NOT NULL,
 	"hash" varchar,
 	"firstname" varchar NOT NULL,

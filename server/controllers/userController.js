@@ -1,13 +1,30 @@
 // import our models
 const db = require('../models/userModels');
+const bcrypt = require('bcrypt');
 
 // initialize object to attach middleware to
 const userController = {};
 
+// salt generator and hashing function
+const hashPassword = async (password, saltRounds = 8) => {
+  try {
+      // Generate a salt
+      const salt = await bcrypt.genSalt(saltRounds);
+
+      // Hash password
+      return await bcrypt.hash(password, salt);
+  } catch (error) {
+      console.log(error);
+  }
+
+  // Return null if error
+  return null;
+};
+
 
 
 // middleware to perform get request, confirm user is in database
-userController.checkUsers = (req, res, next) => {
+userController.checkUser = (req, res, next) => {
   const userQuery =
     'SELECT * FROM users WHERE email = $1 AND password = $2';
   const { email, password } = req.body;
@@ -15,15 +32,14 @@ userController.checkUsers = (req, res, next) => {
   db.query(userQuery, params)
   .then ((data)=>{  
   if (data.rows[0].email === email && data.rows[0].password === password) {
-    console.log('email', data.rows[0].email )
-    console.log('passworddd', data.rows[0].firstname )
+    // console.log('email', data.rows[0].email )
+    // console.log('passworddd', data.rows[0].firstname )
       // req.session.loggedin = true;
       // req.session.username = username;
-      res.locals.user = data.rows
-      console.log(res.locals.user)
-    return res.status(200).json(...res.locals.user);
-  } else {
-    res.status(404).end()
+      res.locals.user = data.rows;
+      // console.log(res.locals.user)
+    // return res.status(200).json(...res.locals.user);
+    return next()
   }
 }).catch(err=>{
     console.log(err)
@@ -35,27 +51,26 @@ userController.checkUsers = (req, res, next) => {
 
 
 // add a new user
-userController.newUser = (req, res, next) => {
+userController.newUser = async (req, res, next) => {
   // extract neccesary params from request body
-  const { email, password, firstname, lastname} = req.body;
-  const newUserQuery = 'INSERT INTO users (email, password, firstname, lastname) VALUES ($1, $2, $3, $4)';
-  const params = [email, password, firstname, lastname];
-  // query
-  db.query(newUserQuery, params)
-    .then((result) => {
-      res.locals.user = result.rows[0];
-      return next();
-    })
-    .catch((err) =>
-      next(
-        JSON.stringify({
-          log: `userController.newUser: ERROR: ${err}`,
-          message: {
-            err: 'Error occured in userController.newUser. Check server logs for more details',
-          },
-        })
-      )
-    );
+    const {email, password, firstname, lastname} = req.body;
+    const newUserQuery = 'INSERT INTO users (email, password, hash, firstname, lastname) VALUES ($1, $2, $3, $4, $5)';
+    try {
+      const hash = await hashPassword(password);
+      const params = [email, password, hash, firstname, lastname];
+    // query
+    await db.query(newUserQuery, params), (err, qres) => {
+      if (err) {
+        return next(err);
+      } else {
+        // console.log(qres);
+        res.locals.new = qres.rows;
+        return next();
+      }
+    };
+    } catch (error) {
+      next(error)
+    }
 };
 
 
@@ -65,7 +80,7 @@ userController.getRecipients = (req, res, next) => {
   const recipQuery = 'SELECT * FROM users';
   db.query(recipQuery)
     .then((data) => {
-      console.log(data.rows)
+
       res.locals.recipients = data.rows;
       return next();
     })
@@ -148,7 +163,6 @@ userController.profile = (req, res, next) => {
    db.query(queryStr, updatedMessage)
      .then((data) => {
        res.locals.message = data.rows[0].message;
-       console.log(res.locals.message)
        return next();
      })
      .catch((err) => {
