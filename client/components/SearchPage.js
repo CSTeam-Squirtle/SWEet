@@ -46,7 +46,6 @@ const SearchPage = () => {
 
     return(
       <>
-        <NavBar/>
         <div>
 
           <SearchBar />

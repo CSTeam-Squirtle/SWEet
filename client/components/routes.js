@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import { NavLink, Switch, Route } from 'react-router-dom';
-import Home from './pages/Home.js';
-import login from './pages/login.js';
-import create from './pages/create.js';
+import { Switch, Route } from 'react-router-dom';
+import Main from './Main';
+import Login from './login';
+import ContactPage from './contactsPage';
+import Profile from './Profile'
+import Search from './SearchPage'
+import Signup from './Signup'
+
 
 function Routes() {
-  <Switch>
-         <Route path= '/' exact componenent={Login}/>
-         <Route path= '/home' exact componenent={Main}/>
-         <Route path= '/contacts' exact componenent={ContactPage}/>
-         <Route path= '/profile' exact componenent={Profile}/>
-         <Route path= '/profile' exact componenent={Profile}/>
+  return (
+ <Switch>
+         <Route exact path= '/'  component={Main}></Route>
+         <Route exact path= '/login'  component={Login}></Route>
+         <Route exact path= '/search'  component={Search}></Route>
+         <Route exact path= '/contacts' component={ContactPage}></Route>
+         <Route exact path= '/profile'  component={Profile}></Route>
+         <Route exact path= '/signup'  component={Signup}></Route>
   </Switch>
+  )
 };
 
 export default Routes;

@@ -29,7 +29,6 @@ export function ContactPage(){
 
     return (
         <div className='theContacts'>
-            <NavBar />
             <h1>Contacts</h1>
             {contactLists.map((contact) => <li key={contact.id}>First Name: {contact.firstname} | Last Name: {contact.lastname} | Email: {contact.email} | Phone: {contact.phone} | Linkedin {contact.linkedin} | GitHub: {contact.github} | Message: {contact.message}</li>)}
          </div>

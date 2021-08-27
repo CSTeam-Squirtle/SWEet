@@ -1,6 +1,6 @@
 const express = require('express');
 const userController = require('./controllers/userController');
-
+const authController = require('./controllers/authController');
 const router = express.Router();
 
 // get request to get recipeients 
@@ -17,12 +17,17 @@ router.post('/create', userController.newUser, (req, res) =>
 
 // checks user on login attempt
 // same story as above, tested on postman, not yet functional with frontend
-router.post('/login', {/*authController.checkUser*/}, (req, res) =>
-  res.status(200).json(res.locals).redirect('/')
-);
+router.post('/login', userController.checkUser, (req, res) => {
+  return res.status(200).json(...res.locals.user)
+});
 
 router.put('/profile', userController.profile, (req, res) => {
   res.status(200).json({});
 });
+
+
+router.post('/newAccount', userController.newUser, (req, res)=>{
+  res.status(200).json({});
+})
 
 module.exports = router;

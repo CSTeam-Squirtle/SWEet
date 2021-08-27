@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './components/App'
 import Main from './components/Main'
 import Login from './components/login'
@@ -16,30 +16,12 @@ import './css/styles.css'
 
 const history = createBrowserHistory()
 
-;
-
 render(
+  <BrowserRouter>
     <Provider store={store}>
-        <Router history={history}>
-            <Switch>
-                <Route path= '/'>
-                <Login />
-            </Route>
-            <Route path= '/home'>
-          <Main />
-            </Route> 
-            <Route path= '/contacts'>
-            <ContactPage />
-        </Route>
-        <Route path= '/profile'>
-          <Profile />
-        </Route>
-        <Route path= '/search'>
-          <SearchPage />
-        </Route>
-      </Switch> 
-   </Router> 
+      <App/>
     </Provider>,
+  </BrowserRouter>,
     document.getElementById('root')
   );
 
